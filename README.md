@@ -16,6 +16,12 @@ To use eye tracking properly make sure you calibrated it once you put your heads
 
 Once everything is installed run `Steam VR`, `Ultraleap Tracking` and `VIVE SRanipal`.Then you can open project in `Unity` find `Scenes` folder and double-click `myNicoScene`. Once everything loads you an run the project from interface.
 
+## How to use
+When the eye-tracker is activated, NICO will respond to your gaze while you play the scene. If you look at one of the cubes, NICO will turn his head to follow your gaze. If you make eye contact with him, he will look back at you. If you focus on his lower arm, he will wave at you.
+
+Additionally, we've incorporated basic UI controls using hand tracking. When this feature is enabled, rotating your left hand will display the UI. You can then press buttons with your right hand. Furthermore, you can move objects in the scene using your hands.
+
+
 ## Notes
 If the eye tracking is not working properly check `Unity Console` for warning: _`No conected eye trackers found.`_ This is related to hardware issues and you will need to restart headset and `VIVE SRanipal` runtime. If you are using hand tracking we recomend to unplug it before trying to run the project again.
 
