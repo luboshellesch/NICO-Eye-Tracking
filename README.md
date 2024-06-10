@@ -17,7 +17,7 @@ To use eye tracking properly make sure you calibrated it once you put your heads
 Once everything is installed run `Steam VR`, `Ultraleap Tracking` and `VIVE SRanipal`.Then you can open project in `Unity` find `Scenes` folder and double-click `myNicoScene`. Once everything loads you an run the project from interface.
 
 ## Notes
-If the eye tracking is not working properly check `Unity Console` for warning: _`No conected eye trackers found.`_ This is related to hardware issues and you will need to restart headset. If you are using hand tracking we recomend to unplug it before trying to run the project again.
+If the eye tracking is not working properly check `Unity Console` for warning: _`No conected eye trackers found.`_ This is related to hardware issues and you will need to restart headset and `VIVE SRanipal` runtime. If you are using hand tracking we recomend to unplug it before trying to run the project again.
 
 
 
