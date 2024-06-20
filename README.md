@@ -8,6 +8,8 @@ This project is build around `HTC Vive Pro Eye` and it's integrated eye tracking
 1. VIVE software from (https://www.vive.com/us/setup/pc-vr/)
     - This includes SRanipal for eye tracking
 2. Steam VR from (https://store.steampowered.com/app/250820/SteamVR/)
+3. Tobii Eye Tracking SDK from (https://developer.tobii.com/download-packages/tobii-vr/)
+    - Extract the content to a file and copy the path. Navigate to `NICO-Eye-Tracking-main\Packages\manifest.json` and `NICO-Eye-Tracking-main\Packages\packages-lock.json` for instructions on where to paste it.
 
 Follow the instructions on how to confiugure and setup respective applications.
 To use eye tracking properly make sure you calibrated it once you put your headset on. You can follow instructions here (https://www.vive.com/ca/support/vive-pro-eye/category_howto/calibrating-eye-tracking.html)
