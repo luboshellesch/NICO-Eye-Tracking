@@ -8,13 +8,14 @@ This project is build around `HTC Vive Pro Eye` and it's integrated eye tracking
 1. VIVE software from (https://www.vive.com/us/setup/pc-vr/)
     - This includes SRanipal for eye tracking
 2. Steam VR from (https://store.steampowered.com/app/250820/SteamVR/)
-3. Tobii Eye Tracking SDK from (https://developer.tobii.com/download-packages/tobii-vr/)
-    - Extract the content to a file and copy the path. Navigate to `NICO-Eye-Tracking-main\Packages\manifest.json` and `NICO-Eye-Tracking-main\Packages\packages-lock.json` for instructions on where to paste it.
 
 Follow the instructions on how to confiugure and setup respective applications.
 To use eye tracking properly make sure you calibrated it once you put your headset on. You can follow instructions here (https://www.vive.com/ca/support/vive-pro-eye/category_howto/calibrating-eye-tracking.html)
 
-3. To use hand tracking you need `Leap Motion Controller` and software from here (https://leap2.ultraleap.com/downloads/leap-motion-controller/)
+3. Tobii Eye Tracking SDK from (https://developer.tobii.com/download-packages/tobii-vr/)
+    - Extract the content to a file and copy the path. Navigate to `NICO-Eye-Tracking-main\Packages\manifest.json` and `NICO-Eye-Tracking-main\Packages\packages-lock.json` for instructions on where to paste it.
+
+4. To use hand tracking you need `Leap Motion Controller` and software from here (https://leap2.ultraleap.com/downloads/leap-motion-controller/)
 
 Once everything is installed run `Steam VR`, `Ultraleap Tracking` and `VIVE SRanipal`.Then you can open project in `Unity` find `Scenes` folder and double-click `myNicoScene`. Once everything loads you an run the project from interface.
 
