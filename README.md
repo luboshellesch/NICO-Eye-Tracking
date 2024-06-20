@@ -13,7 +13,7 @@ Follow the instructions on how to confiugure and setup respective applications.
 To use eye tracking properly make sure you calibrated it once you put your headset on. You can follow instructions here (https://www.vive.com/ca/support/vive-pro-eye/category_howto/calibrating-eye-tracking.html)
 
 3. Tobii Eye Tracking SDK from (https://developer.tobii.com/download-packages/tobii-vr/)
-    - Extract the content to a file and copy the path. Navigate to `NICO-Eye-Tracking-main\Packages\manifest.json` and `NICO-Eye-Tracking-main\Packages\packages-lock.json` for instructions on where to paste it.
+    - Extract the content to a file and copy the path. Then, navigate to `NICO-Eye-Tracking-main\Packages\manifest.json` and `NICO-Eye-Tracking-main\Packages\packages-lock.json`. You will find `C:/Example/Path/To/TobiiXRSDK` there, where you should paste the path.
 
 4. To use hand tracking you need `Leap Motion Controller` and software from here (https://leap2.ultraleap.com/downloads/leap-motion-controller/)
 
