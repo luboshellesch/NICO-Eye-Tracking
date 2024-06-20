@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "com.tobii.xr.sdk": "file:C:/Users/farka/Documents/lubos/Tobii",
+    "com.tobii.xr.sdk": "file:C:/Example/Path/To/TobiiXRSDK",    
     "com.ultraleap.tracking": "6.14.0",
     "com.unity.textmeshpro": "3.0.9",
     "com.unity.ugui": "1.0.0",
