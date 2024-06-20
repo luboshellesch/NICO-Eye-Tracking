@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "com.tobii.xr.sdk": {
-      "version": "file:C:/Users/farka/Documents/lubos/Tobii",
+      "version": "file:C:/Example/Path/To/TobiiXRSDK",
       "depth": 0,
       "source": "local",
       "dependencies": {
