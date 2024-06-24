@@ -28,11 +28,11 @@ Additionally, we've incorporated basic UI controls using hand tracking. When thi
 ## Notes
 If the eye tracking is not working properly check `Unity Console` for warning: _`No conected eye trackers found.`_ This is related to hardware issues and you will need to restart headset and `VIVE SRanipal` runtime. If you are using hand tracking we recomend to unplug it before trying to run the project again.
 
-### FIX#1
+### FIX#1 [^2]
 
 Disconnect all the link box cables from the computer.
 
-Navigate to the drop down menu on Steam VR (3 lines) ; Developer ; Developer settings.
+Navigate to the `drop down menu` on `Steam VR` => `Developer` => `Developer settings`.
 
 Click `Remove all Steam VR USB devices`. Make sure the USB cable or other cable is not connected to the link box and click `Yes`.
 
@@ -42,10 +42,10 @@ Restart your computer.
 
 Reconnect the USB cables. This will reinstall all `Vive USB Drivers`.
 
-### FIX#2
+### FIX#2 [^2]
 
-This one is pretty easy instead of using `USB3.0` or higher plug headset to a `USB2.0`
+Instead of using `USB3.0` or higher plug headset to a `USB2.0`. This should always work.
 
 
 [^1]: We would like to thank [Iveta Bečková](https://github.com/iveta331/NICO.git) for providing us with the scene with NICO.
-
+[^2]: Provided by (https://www.reddit.com/r/Vive/comments/10ypn77/vive_face_facial_tracker_problems_solved_error/)
