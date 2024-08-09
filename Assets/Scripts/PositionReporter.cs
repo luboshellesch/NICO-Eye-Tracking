@@ -47,19 +47,21 @@ public class PositionReporter : MonoBehaviour, IGazeFocusable
         }
     }
 
+    bool hasFocus = false;
     // Called when the gaze focus changes
     public void GazeFocusChanged(bool hasFocus)
     {
         _targetColor = hasFocus ? highlightColor : _originalColor;
-        if (hasFocus)
-        {
-            onPositionReport.Invoke(gameObject.transform); 
-        }
+        this.hasFocus = hasFocus;
     }
 
     // Called once per frame
     private void Update()
     {
+        if (hasFocus)
+        {
+            onPositionReport.Invoke(gameObject.transform);
+        }
         UpdateColorTransition(); 
     }
 

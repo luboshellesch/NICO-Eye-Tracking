@@ -5,6 +5,10 @@ public class EyeContact : MonoBehaviour, IGazeFocusable
 {
     // Serialized field for position reporting event
     [SerializeField] private PositionEvent onPositionReport;
+    [SerializeField] private EyeContactEvent onEyeContact;
+    [SerializeField] private GameObject mainCamera; 
+
+    private bool _isEnabled = true; 
 
     // Called when the script instance is being loaded
     private void Awake()
@@ -16,10 +20,10 @@ public class EyeContact : MonoBehaviour, IGazeFocusable
     // Checks if the main camera is assigned
     private void ValidateCamera()
     {
-        if (!gameObject)
+        if (!mainCamera)
         {
             Debug.LogError("Main Camera not found! Please assign a Main Camera in the inspector.");
-            enabled = false; 
+            _isEnabled = false; 
         }
     }
 
@@ -32,16 +36,27 @@ public class EyeContact : MonoBehaviour, IGazeFocusable
         }
     }
 
+    bool hasFocus = false;
     // Called when the gaze focus changes
     public void GazeFocusChanged(bool hasFocus)
     {
-        ReportPosition(); 
+        this.hasFocus = hasFocus;
+    }
+
+    // Continuously reports the position while the object has focus
+    private void Update()
+    {
+        if (hasFocus && _isEnabled)
+        {
+            ReportEyeContact();
+        }
     }
 
     // Reports the position of the camera by invoking the position report event
-    private void ReportPosition()
+    private void ReportEyeContact()
     {
-        Transform cameraPosition = gameObject.transform; 
-        onPositionReport.Invoke(cameraPosition); 
+        Transform cameraPosition = mainCamera.transform;
+        onPositionReport.Invoke(cameraPosition);
+        onEyeContact.Invoke();
     }
 }

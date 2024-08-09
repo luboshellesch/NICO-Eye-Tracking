@@ -1,5 +1,6 @@
 using UnityEngine;
 using Tobii.G2OM;
+using System.Collections.Generic;
 
 public class ArmWave : MonoBehaviour, IGazeFocusable
 {
@@ -13,14 +14,13 @@ public class ArmWave : MonoBehaviour, IGazeFocusable
     private float _elapsedWaveTime = 0f;  // Timer to control wave position
     private int _totalWaves = 0;          // Counter for number of complete waves
     private bool _isCurrentlyWaving = false; // Indicates if the waving is actively occurring
+    private bool _isInitialized = false;  // Flag to ensure initialization
 
-    // Called when the script instance is being loaded
     private void Awake()
     {
-        ValidateArticulationBodies(); 
+        ValidateArticulationBodies();
     }
 
-    // Validates that the articulation bodies are assigned
     private void ValidateArticulationBodies()
     {
         if (!collarBone || !upperArm || !lowerArm)
@@ -30,59 +30,59 @@ public class ArmWave : MonoBehaviour, IGazeFocusable
         }
     }
 
-    // Called when the gaze focus changes
     public void GazeFocusChanged(bool hasFocus)
     {
         if (hasFocus && !_isCurrentlyWaving)
         {
-            InitializeArmPosition(); 
+            InitializeArmPosition();
             _totalWaves = 0; // Reset wave counter
             _elapsedWaveTime = 0f; // Reset wave timer
-            _isCurrentlyWaving = true; 
+            _isInitialized = true; // Set initialization flag
         }
     }
 
-    // Called once per frame
     private void Update()
     {
         if (_isCurrentlyWaving && _totalWaves < 2)
         {
-            PerformWave(); 
+            if (_isInitialized) // Ensure initialization before waving
+            {
+                PerformWave();
+            }
         }
         else if (_totalWaves >= 2)
         {
-            ReturnToInitialPosition(); 
-            _isCurrentlyWaving = false; 
+            ReturnToInitialPosition();
+            _isCurrentlyWaving = false;
+            _isInitialized = false; // Reset initialization flag
         }
     }
 
-    // Performs the waving motion by updating the lower arm's angle
     private void PerformWave()
     {
-        _elapsedWaveTime += Time.deltaTime; 
-        float targetWaveAngle = Mathf.Sin(_elapsedWaveTime) * maximumWaveAngle; 
+        _elapsedWaveTime += Time.deltaTime;
+        float targetWaveAngle = Mathf.Sin(_elapsedWaveTime) * maximumWaveAngle;
 
         if (_elapsedWaveTime >= WavePeriod)
         {
-            _elapsedWaveTime -= WavePeriod; 
-            _totalWaves++; 
+            _elapsedWaveTime -= WavePeriod;
+            _totalWaves++;
         }
 
-        lowerArm.SetDriveTarget(ArticulationDriveAxis.X, targetWaveAngle); 
+        lowerArm.SetDriveTarget(ArticulationDriveAxis.X, targetWaveAngle);
     }
 
-    // Initializes the arm position before starting the wave
     private void InitializeArmPosition()
     {
-        collarBone.SetDriveTarget(ArticulationDriveAxis.X, -90); 
-        upperArm.SetDriveTarget(ArticulationDriveAxis.X, -90); 
+        collarBone.SetDriveTarget(ArticulationDriveAxis.X, -90);
+        upperArm.SetDriveTarget(ArticulationDriveAxis.X, -90);
+        _isCurrentlyWaving = true;
     }
 
-    // Returns the arm to its initial position after waving
     private void ReturnToInitialPosition()
     {
         lowerArm.SetDriveTarget(ArticulationDriveAxis.X, 0);
         collarBone.SetDriveTarget(ArticulationDriveAxis.X, 0);
-        upperArm.SetDriveTarget(ArticulationDriveAxis.X, 0); 
+        upperArm.SetDriveTarget(ArticulationDriveAxis.X, 0);
     }
 }
