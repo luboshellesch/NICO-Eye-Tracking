@@ -12,18 +12,16 @@ This project is build around `HTC Vive Pro Eye` and it's integrated eye tracking
 Follow the instructions on how to confiugure and setup respective applications.
 To use eye tracking properly make sure you calibrated it once you put your headset on. You can follow instructions here (https://www.vive.com/ca/support/vive-pro-eye/category_howto/calibrating-eye-tracking.html)
 
-3. Tobii Eye Tracking SDK from (https://developer.tobii.com/download-packages/tobiixr-sdk-3-0-1/)
-    - Extract the content to a file and copy the path. Then, navigate to `NICO-Eye-Tracking-main\Packages\manifest.json` and `NICO-Eye-Tracking-main\Packages\packages-lock.json`. You will find `C:/Example/Path/To/TobiiXRSDK` there, where you should paste the path.
-
-4. To use hand tracking you need `Leap Motion Controller` and software from here (https://leap2.ultraleap.com/downloads/leap-motion-controller/)
+3. To use hand tracking you need `Leap Motion Controller` and software from here (https://leap2.ultraleap.com/downloads/leap-motion-controller/)
 
 Once everything is installed run `Steam VR`, `Ultraleap Tracking` and `VIVE SRanipal`.Then you can open project in `Unity` find `Scenes` folder and double-click `myNicoScene`. Once everything loads you an run the project from interface.
 
 ## How to use
-When the eye-tracker is activated, NICO will respond to your gaze while you play the scene. If you look at one of the cubes, NICO will turn his head to follow your gaze. If you make eye contact with him, he will look back at you. If you focus on his lower arm, he will wave at you.
+When the eye-tracker is activated, NICO will respond to your gaze as you play the scene. If you look at one of the cubes, NICO will turn his head to follow your gaze. If you make eye contact with him, he will look back at you. If you focus on his lower arm, he will extend his arm toward you or wave, depending on which script is enabled in Unity.
 
-Additionally, we've incorporated basic UI controls using hand tracking. When this feature is enabled, rotating your left hand will display the UI. You can then press buttons with your right hand. Furthermore, you can move objects in the scene using your hands.
+We've also incorporated basic scene and UI controls using hand tracking. When this feature is enabled, rotating your left hand will display the UI, allowing you to press buttons with your right hand. Additionally, you can move objects in the scene using your hands.
 
+Similar functions are also provided by controllers. We recommend using only one type of input at a time—either hand tracking or controller tracking.
 
 ## Notes
 If the eye tracking is not working properly check `Unity Console` for warning: _`No conected eye trackers found.`_ This is related to hardware issues and you will need to restart headset and `VIVE SRanipal` runtime. If you are using hand tracking we recomend to unplug it before trying to run the project again.
@@ -44,7 +42,7 @@ Reconnect the USB cables. This will reinstall all `Vive USB Drivers`.
 
 ### FIX#2 [^2]
 
-Instead of using `USB3.0` or higher plug headset to a `USB2.0`. This should always work.
+Instead of using `USB3.0` or higher plug headset to a `USB2.0`.
 
 
 [^1]: We would like to thank [Iveta Bečková](https://github.com/iveta331/NICO.git) for providing us with the scene with NICO.
