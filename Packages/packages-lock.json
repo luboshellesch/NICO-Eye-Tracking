@@ -12,7 +12,7 @@
       "hash": "3dd72f5f56d1d57f8fed620d492ff142596c6a9e"
     },
     "com.tobii.xr.sdk": {
-      "version": "C:/Example/Path/To/TobiiXRSDK",
+      "version": "file:C:/Example/Path/To/TobiiXRSDK",
       "depth": 0,
       "source": "local",
       "dependencies": {
