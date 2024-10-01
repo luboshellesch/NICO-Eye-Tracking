@@ -10,6 +10,8 @@ public class ArmExtend : MonoBehaviour, IGazeFocusable
     [SerializeField] private ArticulationBody upperArm;
     [SerializeField] private ArticulationBody lowerArm;
     [SerializeField] private ArticulationBody foreArm;
+    public bool exrendArm;
+    public bool manualControl;
 
     private bool _isEnabled = true;
     private void Awake()
@@ -49,5 +51,13 @@ public class ArmExtend : MonoBehaviour, IGazeFocusable
         upperArm.SetDriveTarget(ArticulationDriveAxis.X, 0);
         lowerArm.SetDriveTarget(ArticulationDriveAxis.X, 0);
         foreArm.SetDriveTarget(ArticulationDriveAxis.X, 0);
+    }
+    void Update()
+    {
+        if (manualControl)
+        {
+            if (_isEnabled && exrendArm) { extendArm(); }
+            else { onEyeContact(); }
+        }
     }
 }

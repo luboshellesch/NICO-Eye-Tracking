@@ -2184,6 +2184,8 @@ MonoBehaviour:
   upperArm: {fileID: 920984346}
   lowerArm: {fileID: 797269367}
   foreArm: {fileID: 12617372}
+  exrendArm: 0
+  manualControl: 1
 --- !u!1 &825842317
 GameObject:
   m_ObjectHideFlags: 0
