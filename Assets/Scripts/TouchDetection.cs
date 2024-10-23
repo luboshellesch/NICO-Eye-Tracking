@@ -6,12 +6,12 @@ public class TouchDetection : MonoBehaviour
     [SerializeField] private GameObject markerPrefab;
     [SerializeField] private GameObject screen;
     [SerializeField] private List<GameObject> markers = new List<GameObject>();
-    private float heightOfMarker;
+    private float topSideOfTheScreen;
     private float markerRadiusSquared;
 
-    private void Awake()
+    private void Start()
     {
-        heightOfMarker = screen.transform.lossyScale.y / 2;
+        topSideOfTheScreen = screen.transform.lossyScale.y / 2;
         markerRadiusSquared = Mathf.Pow(markerPrefab.transform.lossyScale.x, 2);
     }
 
@@ -26,7 +26,7 @@ public class TouchDetection : MonoBehaviour
         if (Vector3.Dot(upperSide, handDirection) <= 0) return;
 
         Vector3 touchPosition = other.ClosestPoint(screen.transform.position);
-        Vector3 markerPosition = new Vector3(touchPosition.x, screen.transform.position.y + heightOfMarker, touchPosition.z);
+        Vector3 markerPosition = new Vector3(touchPosition.x, screen.transform.position.y + topSideOfTheScreen, touchPosition.z);
 
         // Only create marker if there are none or it's far enough from the last one
         //if (markers.Count == 0 || (markers.Count > 0 && IsFarEnoughFromLastMarker(markerPosition)))

@@ -1,4 +1,6 @@
+using System.Diagnostics.Tracing;
 using UnityEngine;
+using UnityEngine.UIElements;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.OpenXR.Input;
@@ -13,8 +15,10 @@ public class LineConnector : MonoBehaviour
     public bool rightController;
 
     [SerializeField] private Material highlightMaterial;
+    [SerializeField] private GameObject markerPrefab;
     [SerializeField] private GameObject screen;
-
+    private float _topSideOfTheScreen;
+    private GameObject _marker = null;
 
     private Material _defaultMaterial;
     private Transform _selection;
@@ -25,6 +29,7 @@ public class LineConnector : MonoBehaviour
     {
         _lineRenderer = GetComponent<LineRenderer>();
         _lineRenderer.positionCount = 2;
+        _topSideOfTheScreen = screen.transform.lossyScale.y / 2;
     }
 
     void Update()
@@ -43,6 +48,10 @@ public class LineConnector : MonoBehaviour
             else
             {
                 _lineRenderer.enabled = false;
+                if (_marker)
+                {
+                    Destroy(_marker);
+                }
             }
         }
     }
@@ -70,7 +79,7 @@ public class LineConnector : MonoBehaviour
 
     void CheckLineIntersection()
     {
-        ResetSelection();
+        //ResetSelection();
 
         Vector3 direction = pointB.position - pointA.position;
         float distance = Vector3.Distance(pointA.position, _pointC);
@@ -83,17 +92,17 @@ public class LineConnector : MonoBehaviour
         }
     }
 
-    void ResetSelection()
-    {
-        crossedSomething = false;
+    //void ResetSelection()
+    //{
+    //    crossedSomething = false;
 
-        if (_selection != null && _defaultMaterial != null)
-        {
-            var selectionRenderer = _selection.GetComponent<Renderer>();
-            selectionRenderer.material = _defaultMaterial;
-            _selection = null;
-        }
-    }
+    //    if (_selection != null && _defaultMaterial != null)
+    //    {
+    //        var selectionRenderer = _selection.GetComponent<Renderer>();
+    //        selectionRenderer.material = _defaultMaterial;
+    //        _selection = null;
+    //    }
+    //}
 
     void ProcessHits(RaycastHit[] hits)
     {
@@ -116,18 +125,16 @@ public class LineConnector : MonoBehaviour
             //}
 
             // Showing marker at the point of cross between ray and screen.
-            //if (selection.CompareTag("screen")) // Assuming "Screen" is the tag of your screen object
-            //{
-            //    Vector3 hitPosition = hit.point;
-            //    if (markers.Count > 0)
-            //    {
-            //        Destroy(markers[0]);
-            //        markers.Clear();
-            //    }
-
-            //    Vector3 markerPosition = new Vector3(hitPosition.x, screen.transform.position.y + heightOfMarker, hitPosition.z);
-            //    AddMarker(markerPosition);
-            //}
+            if (selection.CompareTag("screen")) // Assuming "Screen" is the tag of your screen object
+            {
+                Vector3 hitPosition = hit.point;
+                Vector3 markerPosition = new Vector3(hitPosition.x, screen.transform.position.y + _topSideOfTheScreen, hitPosition.z);
+                if (_marker)
+                {
+                    Destroy(_marker);
+                }
+                _marker = Instantiate(markerPrefab, markerPosition, Quaternion.identity);
+            }
         }
     }
 
