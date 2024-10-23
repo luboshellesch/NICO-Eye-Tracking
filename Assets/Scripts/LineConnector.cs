@@ -3,19 +3,19 @@ using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.OpenXR.Input;
 
-
 [RequireComponent(typeof(LineRenderer))]
 public class LineConnector : MonoBehaviour
 {
     public Transform pointA; // Assign the first point in the Unity Inspector
     public Transform pointB; // Assign the second point in the Unity Inspector
     public float extensionLength = 0.3f; // Length to extend the line beyond pointB
-    public bool crossedSmth = false; // This will be set to true if the line crosses an object
-    public bool isRight;
+    public bool crossedSomething = false; // This will be set to true if the line crosses an object
+    public bool rightController;
 
-    [SerializeField] private string selectableTag = "selectable";
     [SerializeField] private Material highlightMaterial;
-    
+    [SerializeField] private GameObject screen;
+
+
     private Material _defaultMaterial;
     private Transform _selection;
 
@@ -51,19 +51,15 @@ public class LineConnector : MonoBehaviour
         bool leftTriggerPressed = false;
         bool rightTriggerPressed = false;
 
-        //// Check left hand trigger
-        var leftHand = InputDevices.GetDeviceAtXRNode(XRNode.LeftHand);
-        leftHand.TryGetFeatureValue(CommonUsages.triggerButton, out leftTriggerPressed);
-
-        // Check right hand trigger
-        var rightHand = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
-        rightHand.TryGetFeatureValue(CommonUsages.triggerButton, out rightTriggerPressed);
-
-        if (isRight)
+        if (rightController)
         {
+            var rightHand = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
+            rightHand.TryGetFeatureValue(CommonUsages.triggerButton, out rightTriggerPressed);
             return rightTriggerPressed;
 
         }
+        var leftHand = InputDevices.GetDeviceAtXRNode(XRNode.LeftHand);
+        leftHand.TryGetFeatureValue(CommonUsages.triggerButton, out leftTriggerPressed);
         return leftTriggerPressed;
     }
     void CalculateExtendedPoint()
@@ -82,14 +78,14 @@ public class LineConnector : MonoBehaviour
 
         if (hits.Length > 0)
         {
-            crossedSmth = true;
+            crossedSomething = true;
             ProcessHits(hits);
         }
     }
 
     void ResetSelection()
     {
-        crossedSmth = false;
+        crossedSomething = false;
 
         if (_selection != null && _defaultMaterial != null)
         {
@@ -105,19 +101,33 @@ public class LineConnector : MonoBehaviour
         {
             RaycastHit hit = hits[i];
             var selection = hit.transform;
+            // Lighting up gameObjects with tag selectable
+            //if (selection.CompareTag("selectable"))
+            //{
+            //    var selectionRenderer = selection.GetComponent<Renderer>();
+            //    if (selectionRenderer != null)
+            //    {
+            //        _defaultMaterial = selectionRenderer.material;
+            //        selectionRenderer.material = highlightMaterial;
+            //    }
 
-            if (selection.CompareTag(selectableTag))
-            {
-                var selectionRenderer = selection.GetComponent<Renderer>();
-                if (selectionRenderer != null)
-                {
-                    _defaultMaterial = selectionRenderer.material;
-                    selectionRenderer.material = highlightMaterial;
-                }
+            //    _selection = selection;
+            //    break;
+            //}
 
-                _selection = selection;
-                break;
-            }
+            // Showing marker at the point of cross between ray and screen.
+            //if (selection.CompareTag("screen")) // Assuming "Screen" is the tag of your screen object
+            //{
+            //    Vector3 hitPosition = hit.point;
+            //    if (markers.Count > 0)
+            //    {
+            //        Destroy(markers[0]);
+            //        markers.Clear();
+            //    }
+
+            //    Vector3 markerPosition = new Vector3(hitPosition.x, screen.transform.position.y + heightOfMarker, hitPosition.z);
+            //    AddMarker(markerPosition);
+            //}
         }
     }
 
